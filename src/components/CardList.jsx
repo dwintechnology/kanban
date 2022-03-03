@@ -5,7 +5,7 @@ function CardList({ tasks, status }) {
   let item = tasks
     .filter((el) => el.status === status)
     .map((el, i) => {
-      return <CardItem title={el.title} description={el.description} />;
+      return <CardItem key={i} title={el.title} description={el.description} />;
     });
   return (
     <div >
