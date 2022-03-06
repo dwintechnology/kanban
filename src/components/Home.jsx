@@ -1,18 +1,35 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { tasksOp, tasksSel } from "../store/tasks";
 import CardList from "./CardList";
-import tasks from "../constants"
-import ShowTransactionList from "../redux/store"
 
 function Home() {
+  const dispatch = useDispatch();
+  const taskList = useSelector(tasksSel.tasksSelector);
 
-  return (
-    <div style={{display:"flex", justifyContent:"space-around", marginTop:"30px"}}>
-      <CardList tasks={tasks} status={"To Do"}/>
-      <CardList tasks={tasks} status={"In Progress"}/>
-      <CardList tasks={tasks} status={"Done"}/>
+  const tasks = taskList?.data?.slice(13);
+
+  console.log(tasks, "tasss");
+
+  useEffect(() => {
+    dispatch(tasksOp.getTasks());
+  }, [dispatch]);
+
+  return tasks?.length ? (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        marginTop: "30px",
+      }}
+    >
+      <CardList tasks={tasks} status={"To Do"} />
+      <CardList tasks={tasks} status={"In Progress"} />
+      <CardList tasks={tasks} status={"Done"} />
       {/* <ShowTransactionList /> */}
-
     </div>
-  );
+  ) : null;
 }
 
 export default Home;

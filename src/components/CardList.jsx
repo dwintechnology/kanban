@@ -3,10 +3,14 @@ import CardItem from "./CardItem";
 
 function CardList({ tasks, status }) {
   let item = tasks
-    .filter((el) => el.status === status)
     .map((el, i) => {
-      return <CardItem key={i} title={el.title} description={el.description} />;
+      const element = JSON.parse(el.description);
+
+      if (element.status === status) {
+        return <CardItem key={el._id} title={element.title} description={element.description} />;
+      } else return null;
     });
+
   return (
     <div >
       <Card
