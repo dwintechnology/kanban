@@ -13,8 +13,8 @@ const getTasks = () => {
             });
 
             const data = await response.json();
-    
-            dispatch(setTasks(data));
+            const newData = {count: data.data.slice(13).length , data: data.data.slice(13)}
+            dispatch(setTasks(newData));
         } catch (err) {
             console.error(err);
         }

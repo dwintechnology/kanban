@@ -1,18 +1,26 @@
 import { Card } from "antd";
+import Draggable from "react-draggable";
 import CardItem from "./CardItem";
 
 function CardList({ tasks, status }) {
-  let item = tasks
-    .map((el, i) => {
-      const element = JSON.parse(el.description);
+  let item = tasks.map((el, i) => {
+    const element = JSON.parse(el.description);
 
-      if (element.status === status) {
-        return <CardItem key={el._id} title={element.title} description={element.description} />;
-      } else return null;
-    });
+    if (element.status === status) {
+      return (
+        <CardItem
+          key={el._id}
+          i={i}
+          title={element.title}
+          description={element.description}
+          tasks={tasks}
+        />
+      );
+    } else return null;
+  });
 
   return (
-    <div >
+    <div>
       <Card
         title={status}
         bordered={false}
@@ -22,15 +30,18 @@ function CardList({ tasks, status }) {
           padding: "10px",
         }}
       >
-        <div style={{
-          width: 300,
-          backgroundColor: "transparent",
-          padding: "10px",
-          position: 'fixed', 
-          overflowY: 'auto',
-           height: "100%",
-
-        }}>{item}</div>
+        <div
+          style={{
+            width: 300,
+            backgroundColor: "transparent",
+            padding: "10px",
+            position: "fixed",
+            overflowY: "auto",
+            height: "100%",
+          }}
+        >
+          {item}
+        </div>
       </Card>
     </div>
   );
