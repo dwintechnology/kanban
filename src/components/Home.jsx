@@ -8,7 +8,9 @@ function Home() {
   const dispatch = useDispatch();
   const taskList = useSelector(tasksSel.tasksSelector);
 
-  const tasks = taskList?.data?.slice(13);
+  console.log(taskList, "taskListtttt")
+  
+  const tasks = taskList?.data; 
 
   console.log(tasks, "tasss");
 
@@ -24,6 +26,8 @@ function Home() {
         marginTop: "30px",
       }}
     >
+      
+     
       <CardList tasks={tasks} status={"To Do"} />
       <CardList tasks={tasks} status={"In Progress"} />
       <CardList tasks={tasks} status={"Done"} />

@@ -13,7 +13,7 @@ const getTasks = () => {
             });
 
             const data = await response.json();
-    
+            data.data = data.data.slice(13)
             dispatch(setTasks(data));
         } catch (err) {
             console.error(err);
@@ -21,11 +21,11 @@ const getTasks = () => {
     };
 };
 
-const changeTaskStatus = () => {
-    return async (dispatch) => {
+// const changeTaskStatus = () => {
+//     return async (dispatch) => {
         
-    }
-}
+//     }
+// }
 export const tasksOp = {
     getTasks
 }

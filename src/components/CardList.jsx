@@ -1,7 +1,14 @@
 import { Card } from "antd";
 import CardItem from "./CardItem";
+import { useDispatch } from "react-redux";
+import {tasksSlice} from "../store/tasks/tasksSlice"
 
 function CardList({ tasks, status }) {
+  const { changePossition } = tasksSlice.actions;
+
+
+  
+  const dispatch = useDispatch();
   let item = tasks
     .map((el, i) => {
       const element = JSON.parse(el.description);
@@ -12,7 +19,9 @@ function CardList({ tasks, status }) {
     });
 
   return (
-    <div >
+
+   
+         <div >
       <Card
         title={status}
         bordered={false}
@@ -20,19 +29,34 @@ function CardList({ tasks, status }) {
           width: 300,
           backgroundColor: "transparent",
           padding: "10px",
+          
         }}
       >
         <div style={{
           width: 300,
           backgroundColor: "transparent",
           padding: "10px",
-          position: 'fixed', 
-          overflowY: 'auto',
-           height: "100%",
+          display:"flex",
+          flexDirection:"column",
+          maxHeight:"90vh",
+          overflow:"auto"
 
-        }}>{item}</div>
+        }}>{item}
+           <button 
+           onClick={()=>{
+             let temp = [...tasks];
+            [temp[2], temp[3]] = [temp[3], temp[2]]
+            console.log("temp", temp)
+            dispatch(changePossition(temp))
+      }}
+      >
+        ALLL
+      </button> 
+        </div>
       </Card>
     </div>
+    
+ 
   );
 }
 
