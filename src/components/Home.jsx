@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { tasksOp, tasksSel } from "../store/tasks";
+import AddTask from "./addTask";
 import CardList from "./CardList";
 
 function Home() {
@@ -25,9 +26,7 @@ function Home() {
     >
       
       <CardList tasks={tasks} status={["To Do", "In Progress", "Done"]} />
-      {/* <CardList tasks={tasks} status={} />
-      <CardList tasks={tasks} status={} /> */}
-      {/* <ShowTransactionList /> */}
+      <AddTask/>
     </div>
   ) : null;
 }

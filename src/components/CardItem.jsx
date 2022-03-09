@@ -60,7 +60,7 @@ function CardItem({ i, item, title, description, tasks }) {
         
         <p>{description}</p>
         <button onClick={() => {
-          // onDelete(tasks[i]._id)
+          onDelete(tasks[i]._id)
           }} >X</button>
       </Card>
     </div>
