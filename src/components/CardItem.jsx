@@ -1,55 +1,69 @@
 import { Card } from "antd";
-import Draggable from "react-draggable";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import tasksSlice from "../store/tasks/"
+import tasksSlice from "../store/tasks/";
 
-
-function CardItem({ i, title, description, tasks }) {
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag";
+let currentItem = null;
+function CardItem({ i, item, title, description, tasks }) {
   let dispatch = useDispatch();
   const { setTasks } = tasksSlice.actions;
 
-  let x, y;
+  const onDelete = async (id) => {
+    try {
+      await fetch(`https://api-nodejs-todolist.herokuapp.com/task/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (e) {
+      console.log("delete error ->", e);
+    }
+  };
+  function dragOverHandler(e) {
+    e.preventDefault();
+  }
+  function dragLeaveHandler(e) {}
+  const dragStartHandler = (e, i) => {
+    currentItem = i;
+  };
+  function dragEndHandler(e) {}
+  const dropHandler = (e, i, currentItem) => {
+    e.preventDefault();
+    let tempArray = [...tasks];
+    let a, b;
+    a = tempArray.splice(currentItem, 1);
+    b = tempArray.splice(i);
+    let resArray = tempArray.concat(a, b);
+    dispatch(setTasks({ count: resArray.length, data: resArray }));
+  };
   return (
-    <Draggable
-      onStart={(evt) => {
-        x = evt.screenX;
-        y = evt.screenY;
-        console.log(i, "start ");
-      }}
-      // bounds="parent"
-      onStop={(evt) => {
+    <div>
+      <Card
+        draggable={true}
+        onDragOver={(e) => dragOverHandler(e)}
+        onDragLeave={(e) => dragLeaveHandler(e)}
+        onDragStart={(e) => dragStartHandler(e,  i)}
+        onDragEnd={(e) => dragEndHandler(e)}
+        onDrop={(e) => dropHandler(e, i, currentItem)}
+        title={title}
+        bordered={false}
+        style={{
+          width: "100%",
+          border: "1px solid black",
+          marginTop: "10px",
+        }}
+      >
         
-        console.log(Math.round((evt.screenY - y) / 80 + i), "end");
-        let stopedIndex = Math.round((evt.screenY - y) / 80 + i);
-        let tempArray = [...tasks];
-        let a, b;
-      
-        a = tempArray.splice(i, 1);
-        b = tempArray.splice(stopedIndex - 1);
-        let resArray = tempArray.concat(a, b);
-        console.log(resArray, "resultooooooooooo")
-        dispatch(setTasks(
-          {count: resArray.length,
-            data: resArray
-          }
-          ))
-      }}
-      // defaultClassNameDragging="valod"
-    >
-      <div>
-        <Card
-          title={title}
-          bordered={false}
-          style={{
-            width: "100%",
-            border: "1px solid black",
-            marginTop: "10px",
-          }}
-        >
-          <p>{description}</p>
-        </Card>
-      </div>
-    </Draggable>
+        <p>{description}</p>
+        <button onClick={() => {
+          // onDelete(tasks[i]._id)
+          }} >X</button>
+      </Card>
+    </div>
   );
 }
 

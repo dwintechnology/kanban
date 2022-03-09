@@ -24,9 +24,9 @@ function Home() {
       }}
     >
       
-      <CardList tasks={tasks} status={"To Do"} />
-      <CardList tasks={tasks} status={"In Progress"} />
-      <CardList tasks={tasks} status={"Done"} />
+      <CardList tasks={tasks} status={["To Do", "In Progress", "Done"]} />
+      {/* <CardList tasks={tasks} status={} />
+      <CardList tasks={tasks} status={} /> */}
       {/* <ShowTransactionList /> */}
     </div>
   ) : null;
