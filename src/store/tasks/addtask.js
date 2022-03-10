@@ -2,9 +2,9 @@ import tasksSlice from ".";
 
 
 const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag";
-function getTasks ({ title, description }){
+function postTasks ({ title}, {description }){
     const { setTasks } = tasksSlice.actions;
-    console.log(title, description)
+    console.log(title, "tritle", "description", description)
     return async (dispatch) => {
         try {
             const response = await fetch(`https://api-nodejs-todolist.herokuapp.com/task`, {
@@ -30,5 +30,5 @@ const changeTaskStatus = () => {
     }
 }
 export const addTask = {
-    getTasks
+    postTasks
 }

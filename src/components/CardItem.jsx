@@ -2,6 +2,7 @@ import { Card } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import tasksSlice from "../store/tasks/";
+import {Delete} from "../store/tasks/delete"
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag";
@@ -9,20 +10,6 @@ let currentItem = null;
 function CardItem({ i, item, title, description, tasks }) {
   let dispatch = useDispatch();
   const { setTasks } = tasksSlice.actions;
-
-  const onDelete = async (id) => {
-    try {
-      await fetch(`https://api-nodejs-todolist.herokuapp.com/task/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    } catch (e) {
-      console.log("delete error ->", e);
-    }
-  };
   function dragOverHandler(e) {
     e.preventDefault();
   }
@@ -40,6 +27,7 @@ function CardItem({ i, item, title, description, tasks }) {
     let resArray = tempArray.concat(a, b);
     dispatch(setTasks({ count: resArray.length, data: resArray }));
   };
+  let id = tasks[i]._id
   return (
     <div>
       <Card
@@ -60,7 +48,8 @@ function CardItem({ i, item, title, description, tasks }) {
         
         <p>{description}</p>
         <button onClick={() => {
-          onDelete(tasks[i]._id)
+          Delete.onDelete(id={id})
+          
           }} >X</button>
       </Card>
     </div>
