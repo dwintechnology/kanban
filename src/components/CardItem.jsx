@@ -37,20 +37,28 @@ function CardItem({ i, item, title, description, tasks }) {
         onDragStart={(e) => dragStartHandler(e,  i)}
         onDragEnd={(e) => dragEndHandler(e)}
         onDrop={(e) => dropHandler(e, i, currentItem)}
-        title={title}
+        
         bordered={false}
         style={{
           width: "100%",
           border: "1px solid black",
           marginTop: "10px",
+          display:"flex",
+          justifyContent:"space-between"
         }}
       >
-        
-        <p>{description}</p>
+        <div style={{display:"flex", justifyContent:"end"}}>
         <button onClick={() => {
-          Delete.onDelete(id={id})
+          Delete.onDelete(id={id}, dispatch={dispatch})
           
           }} >X</button>
+        </div>
+          <div>
+          <h1>{title}</h1>
+          
+        <p>{description}</p>
+        </div>
+        
       </Card>
     </div>
   );

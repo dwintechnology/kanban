@@ -34,7 +34,6 @@ function AddTask(){
         <input type="text" onChange={(e)=>{setDescription(e.target.value)}}/>     
         <button className="addButton" onClick={()=>{
             setOpenAddDiv(!openAddDiv)
-            console.log("description", description)
             dispatch (addTask.postTasks(title={title}, description={description}))
         }}>
             <PlusCircleTwoTone />
