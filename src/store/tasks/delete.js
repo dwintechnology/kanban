@@ -7,13 +7,13 @@ async function onDelete ({ id},{ dispatch }){
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${constants.token}`,
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
           });
             const response = await fetch(`${constants.api}`, {
                 method: "GET",
                 headers: {
-                    'Authorization': `Bearer ${constants.token}`
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
             });
             taskOperation({response}, {dispatch})

@@ -6,7 +6,7 @@ const getTasks = () => {
             const response = await fetch(`${constants.api}`, {
                 method: "GET",
                 headers: {
-                    'Authorization': `Bearer ${constants.token}`
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
             });
             taskOperation({response}, {dispatch})

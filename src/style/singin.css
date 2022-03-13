@@ -1,0 +1,9 @@
+.singInDiv{
+    display: flex;
+    justify-content: center;
+}
+.singInDiv input{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
