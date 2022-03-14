@@ -1,11 +1,10 @@
 import { Card } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import tasksSlice from "../store/tasks/";
 import {Delete} from "../store/tasks/delete"
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag";
+
 let currentItem = null;
 function CardItem({ i, item, title, description, tasks }) {
   let dispatch = useDispatch();

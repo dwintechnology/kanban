@@ -22,8 +22,7 @@ function Home() {
     navigate("/login")
   }
   return (
-    <div className="parent"
-    >
+    <div className="parent">
 
 
       <CardList tasks={tasks} status={["To Do", "In Progress", "Done"]} />

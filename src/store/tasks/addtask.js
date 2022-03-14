@@ -3,7 +3,6 @@ import { constants } from "../../constants";
 function postTasks ({ title}, {description }){
     return async (dispatch) => {
         try {
-            console.log("adding", localStorage.getItem("token"))
             await fetch(`${constants.api}`, {
                 method: "POST",
                 headers: {

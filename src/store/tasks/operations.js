@@ -10,7 +10,6 @@ const getTasks = () => {
                 }
             });
             taskOperation({response}, {dispatch})
-            console.log(localStorage.getItem("token"))
         } catch (err) {
             console.error(err);
         }

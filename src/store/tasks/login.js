@@ -1,7 +1,9 @@
+import {constants} from "../../constants/index"
+
 async function LogInFetch({email}, {password}){
-    // return  () => {
+    
         try {
-            const response = await fetch("https://api-nodejs-todolist.herokuapp.com/user/login", {
+            const response = await fetch(`${constants.login}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -12,12 +14,11 @@ async function LogInFetch({email}, {password}){
                 }),
             });
             const serverResponseJson = await response.json();
-            console.log(serverResponseJson.token, "tokenik")
          localStorage.setItem("token", serverResponseJson.token)
             
         } catch (err) {
             console.error(err);
         }
-    // };
+   
 }
 export default LogInFetch
