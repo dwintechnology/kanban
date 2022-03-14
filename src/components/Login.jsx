@@ -2,19 +2,25 @@ import "../style/singin.css";
 import { useState } from "react";
 import LogInFetch from "../store/tasks/login";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const singnIN = (e) => {
+    const login = (e) => {
         e.preventDefault();
-        LogInFetch( email = { email }, password = { password })()
+        
     }
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const login1 = () => {
+        LogInFetch( email = { email }, password = { password })()
+        navigate("/")
+    }
+    let navigate = useNavigate()
+    let [email, setEmail] = useState()
+    let [password, setPassword] = useState()
     return (
         <>
          <h1>Login</h1>
             <div className="singInDiv">
-                <form onSubmit={singnIN}>
+                <form onSubmit={login}>
                     <label>Email</label>
                     <input type="text" onChange={(e) => {
                         setEmail(e.target.value)
@@ -23,8 +29,8 @@ function Login() {
                     <input type="password" onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
-                    <button type="submit">
-                        <Link to="/"> Log In</Link>
+                    <button type="submit" onClick={()=>{login1()}}>
+                         Log In
                     </button>
                     <button >
                         <Link to="/register">REGISTRATION</Link>

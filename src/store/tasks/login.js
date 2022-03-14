@@ -12,6 +12,7 @@ function LogInFetch({email}, {password}){
                 }),
             });
             const serverResponseJson = await response.json();
+            console.log(serverResponseJson.token)
          localStorage.setItem("token", serverResponseJson.token)
             
         } catch (err) {
