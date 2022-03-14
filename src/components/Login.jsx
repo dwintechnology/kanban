@@ -10,7 +10,7 @@ function Login() {
         
     }
     const login1 = () => {
-        LogInFetch( email = { email }, password = { password })()
+        LogInFetch( email = { email }, password = { password })
         navigate("/")
     }
     let navigate = useNavigate()
