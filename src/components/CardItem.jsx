@@ -10,6 +10,7 @@ function CardItem({ i, item, title, description, tasks }) {
   let dispatch = useDispatch();
   const { setTasks } = tasksSlice.actions;
 
+
   const onDelete = async (id) => {
     try {
       await fetch(`https://api-nodejs-todolist.herokuapp.com/task/${id}`, {

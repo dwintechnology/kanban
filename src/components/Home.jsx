@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import React,{ useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { tasksOp, tasksSel } from "../store/tasks";
-import CardList from "./CardList";
+import {Wrapper} from "./Board";
 
 function Home() {
   const dispatch = useDispatch();
@@ -23,11 +23,8 @@ function Home() {
         marginTop: "30px",
       }}
     >
-      
-      <CardList tasks={tasks} status={["To Do", "In Progress", "Done"]} />
-      {/* <CardList tasks={tasks} status={} />
-      <CardList tasks={tasks} status={} /> */}
-      {/* <ShowTransactionList /> */}
+
+      <Wrapper status={["To Do", "In Progress", "Done"]} tasks={tasks}/>
     </div>
   ) : null;
 }
