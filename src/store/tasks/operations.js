@@ -1,31 +1,20 @@
-import tasksSlice from ".";
-
+import taskOperation from "./setTaskOperation";
+import { constants } from "../../constants";
 const getTasks = () => {
-    const { setTasks } = tasksSlice.actions;
-
     return async (dispatch) => {
         try {
-            const response = await fetch('https://api-nodejs-todolist.herokuapp.com/task', {
+            const response = await fetch(`https://api-nodejs-todolist.herokuapp.com/task`, {
                 method: "GET",
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag'
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
             });
-
-            const data = await response.json();
-            const newData = {count: data.data.length , data: data.data}
-            dispatch(setTasks(newData));
+            taskOperation({response}, {dispatch})
         } catch (err) {
             console.error(err);
         }
     };
 };
-
-const changeTaskStatus = () => {
-    return async (dispatch) => {
-        
-    }
-}
 export const tasksOp = {
     getTasks
 }
