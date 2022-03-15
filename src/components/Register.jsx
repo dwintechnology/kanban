@@ -14,7 +14,7 @@ function Register() {
     const register = (e) => {
         e.preventDefault();
     }
-    const register1 = () => {
+    const sendRequestRegister = () => {
         const newUserDataObject = { name, email, password, age }
         RegisterFetch(newUserDataObject);
         navigate("/login")
@@ -45,7 +45,7 @@ function Register() {
                     <input style={{ marginTop: "10px" }} onChange={(e) => {
                         setAge(e.target.value)
                     }} type="text" />
-                    <button type='submit' onClick={()=>register1()}>
+                    <button type='submit' onClick={()=>sendRequestRegister()}>
                         REGISTER
                     </button>
                 </form>

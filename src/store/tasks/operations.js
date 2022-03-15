@@ -3,7 +3,7 @@ import { constants } from "../../constants";
 const getTasks = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`${constants.api}`, {
+            const response = await fetch(`https://api-nodejs-todolist.herokuapp.com/task`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("token")}`

@@ -9,7 +9,7 @@ function Login() {
         e.preventDefault();
         
     }
-    const login1 = () => {
+    const sendRequestLogin = () => {
         LogInFetch( email = { email }, password = { password })
         navigate("/")
     }
@@ -17,7 +17,7 @@ function Login() {
     let [email, setEmail] = useState()
     let [password, setPassword] = useState()
     return (
-        <>
+        <div>
          <h1>Login</h1>
             <div className="singInDiv">
                 <form onSubmit={login}>
@@ -29,7 +29,7 @@ function Login() {
                     <input type="password" onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
-                    <button type="submit" onClick={()=>{login1()}}>
+                    <button type="submit" onClick={()=>{sendRequestLogin()}}>
                          Log In
                     </button>
                     <button >
@@ -37,7 +37,7 @@ function Login() {
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 export default Login
