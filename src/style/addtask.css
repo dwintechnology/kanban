@@ -1,0 +1,28 @@
+.addButton{
+    border:none; 
+    background-color:transparent;
+    cursor: pointer;
+}
+.closeButton{
+    border:none; 
+    background-color:transparent;
+    cursor: pointer;
+    margin-left: 150px;
+}
+.addDiv{
+    padding: 150px 100px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    position:fixed;
+    z-index: 2;
+    color: white;
+}
+.addDiv input{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.addDiv button{
+   padding-left: 75px;
+}

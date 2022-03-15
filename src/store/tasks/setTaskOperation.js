@@ -1,4 +1,5 @@
 import tasksSlice from ".";
+
 async function taskOperation({response}, {dispatch}){
     const { setTasks } = tasksSlice.actions;
     const data = await response.json();

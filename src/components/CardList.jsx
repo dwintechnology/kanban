@@ -5,7 +5,7 @@ import CardItem from "./CardItem";
 function CardList({ tasks, status }) {
   return status.map((e, i)=>{
     return (
-      <div key={i}>
+           <div key={i}>
         <Card
         
           title={e}
@@ -26,7 +26,7 @@ function CardList({ tasks, status }) {
               height: "100%",
             }}
           >
-            {tasks.map((el, i) => {
+            {tasks?.map((el, i) => {
               const element = JSON.parse(el.description);
   
               if (element.status === e) {

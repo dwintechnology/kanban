@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
@@ -28,12 +28,17 @@ export const Wrapper = (props) => {
   const [items, setItems] = useState(tasks);
   const isMobile = window.innerWidth < 600;
 
+  useEffect(() => {
+     setItems(tasks)
+  }, [ tasks])
+  
+
 
   const moveCardHandler = (dragIndex, hoverIndex, itemName) => {
     const column = items.find(
       (i) => JSON.parse(i.description).title === itemName
     );
-    const columnItems = items.filter(
+    const columnItems = items?.filter(
       (i) =>
         JSON.parse(i.description).status ===
         JSON.parse(column.description).status
@@ -58,17 +63,13 @@ export const Wrapper = (props) => {
         // remove item by "dragIndex" and put "prevItem" instead
         coppiedStateArray.splice(dragIndex, 1, prevItem[0]);
 
-        // To Do
-        //fetch("url", data: [...restItems, ...coppiedStateArray])
-
         return [...restItems, ...coppiedStateArray];
       });
     }
   };
 
   const returnItemsForColumn = (columnName) => {
-    return items
-      .filter(Boolean)
+    return items?.filter(Boolean)
       .filter(
         (item) =>
           JSON.parse(item.description).status.toLocaleLowerCase() ===

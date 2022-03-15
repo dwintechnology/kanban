@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import taskOperation from "../../store/tasks/setTaskOperation";
 import {tasksSlice} from "../../store/tasks/tasksSlice";
 import { fetches } from "../../store/tasks/changeStatus";
+import {Delete} from "../../store/tasks/delete"
 
 
 
@@ -11,12 +12,9 @@ import { fetches } from "../../store/tasks/changeStatus";
 export const MovableItem = ({id, name, description, index, moveCardHandler, setItems}) => {
     let dispatch = useDispatch()
     const changeItemColumn = (currentItem, columnName) => {
-        console.log("111", id, currentItem, columnName)
-
-     fetches({id, description, columnName, name})
+        fetches({id, description, columnName, name});
         setItems((prevState) => { 
             return prevState.map(e => {
-                console.log("prev state", prevState)
                 const description = JSON.parse(e?.description);
 
                 if(currentItem.name === description.title){
@@ -124,6 +122,12 @@ export const MovableItem = ({id, name, description, index, moveCardHandler, setI
            </div>
            
             <button onClick={onDelete}>Edit </button>
+            <div style={{display:"flex", justifyContent:"end"}}>
+        <button onClick={() => {
+          Delete.onDelete(id={id}, dispatch={dispatch})
+          
+          }} >X</button>
+        </div>
         </div>
     )
 }

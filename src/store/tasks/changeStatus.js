@@ -1,13 +1,13 @@
 import tasksSlice from ".";
-
+import { constants } from "../../constants";
 
 export async function fetches({id, description, columnName, name}){
     try {
-        await fetch(`https://api-nodejs-todolist.herokuapp.com/task/${id}`, {
+        await fetch(`${constants.api}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIwYTM2NmI5OTU2OTAwMTcxNWZhNGIiLCJpYXQiOjE2NDYzMDYxNTF9.HRcfSTc5rGkLna58i1um9-gIJHVVk_mM2RNZI1tf1ag`,
+                Authorization: `Bearer ${localStorage.getItem("token")}`
             },
            body:JSON.stringify({
             "completed": false,

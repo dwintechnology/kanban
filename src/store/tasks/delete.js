@@ -1,8 +1,15 @@
 import taskOperation from "./setTaskOperation";
 import { constants } from "../../constants";
-const getTasks = () => {
-    return async (dispatch) => {
+
+async function onDelete ({ id},{ dispatch }){
         try {
+            await fetch(`${constants.api}/${id}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+          });
             const response = await fetch(`${constants.api}`, {
                 method: "GET",
                 headers: {
@@ -13,9 +20,11 @@ const getTasks = () => {
         } catch (err) {
             console.error(err);
         }
-    };
-};
-export const tasksOp = {
-    getTasks
-}
 
+           
+        
+};
+
+export const Delete = {
+    onDelete
+}
