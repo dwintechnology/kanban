@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { tasksOp, tasksSel } from "../store/tasks";
 import { Wrapper } from "./Board";
 import AddTask from "./AddTask";
-import CardList from "./CardList";
 import "../style/home.css";
 
 function Home() {
