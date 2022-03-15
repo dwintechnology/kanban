@@ -1,5 +1,5 @@
 export function initialTasksState() {
-    return {
-        taskList: []
-    }
+  return {
+    taskList: [],
+  };
 }

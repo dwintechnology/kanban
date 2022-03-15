@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
+import React, { useEffect, useState } from "react";
+import { DndProvider, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { MovableItem } from "./Card";
 import "./styles.css";
-import { constants } from "../../constants";
-import taskOperation from "../../store/tasks/setTaskOperation";
-import { useDispatch } from "react-redux";
 
 const Column = ({ children, className, title }) => {
   const [, drop] = useDrop({
@@ -23,16 +20,13 @@ const Column = ({ children, className, title }) => {
 };
 
 export const Wrapper = (props) => {
-  const dispatch = useDispatch();
   const { status, tasks } = props;
   const [items, setItems] = useState(tasks);
   const isMobile = window.innerWidth < 600;
 
   useEffect(() => {
-     setItems(tasks)
-  }, [ tasks])
-  
-
+    setItems(tasks);
+  }, [tasks]);
 
   const moveCardHandler = (dragIndex, hoverIndex, itemName) => {
     const column = items.find(
@@ -52,7 +46,6 @@ export const Wrapper = (props) => {
 
     const dragItem = columnItems[dragIndex];
 
-
     if (dragItem) {
       setItems((prevState) => {
         const coppiedStateArray = [...columnItems];
@@ -69,7 +62,8 @@ export const Wrapper = (props) => {
   };
 
   const returnItemsForColumn = (columnName) => {
-    return items?.filter(Boolean)
+    return items
+      ?.filter(Boolean)
       .filter(
         (item) =>
           JSON.parse(item.description).status.toLocaleLowerCase() ===
