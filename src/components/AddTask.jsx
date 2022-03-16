@@ -15,6 +15,7 @@ function AddTask() {
   const dispatch = useDispatch();
   return (
     <>
+   
       <div>
         <button
           onClick={() => {
@@ -28,7 +29,7 @@ function AddTask() {
       {openAddDiv && (
         <div className="addDiv">
           <div>
-            <div>
+          <div>
               <button
                 onClick={() => {
                   setOpenAddDiv(!openAddDiv);

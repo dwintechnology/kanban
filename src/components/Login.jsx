@@ -1,4 +1,4 @@
-import "../style/singin.css";
+import "../style/login.css";
 import { useState } from "react";
 import LogInFetch from "../store/tasks/login";
 import { Link } from "react-router-dom";
@@ -15,37 +15,49 @@ function Login() {
   let navigate = useNavigate();
   let [email, setEmail] = useState();
   let [password, setPassword] = useState();
+  function checkDisbled(){
+    if(email && password){
+      return false
+    }
+    return true
+  }
   return (
     <div>
       <h1>Login</h1>
       <div className="singInDiv">
-        <form onSubmit={login}>
-          <label>Email</label>
-          <input
-            type="text"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <button
-            type="submit"
-            onClick={() => {
-              sendRequestLogin();
-            }}
-          >
-            Log In
-          </button>
-          <button>
-            <Link to="/register">REGISTRATION</Link>
-          </button>
-        </form>
+        <div className="signInChild">
+          <form onSubmit={login}>
+            <label>Email</label>
+            <input
+              type="text"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              required
+            />
+            <label>Password</label>
+            <input
+              type="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              required
+            />
+            <button
+              disabled = {checkDisbled()}
+              type="submit"
+              onClick={() => {
+                sendRequestLogin();
+              }}
+              
+            >
+              Log In
+            </button>
+            <button>
+              <Link className="btnLink" to="/register">REGISTRATION</Link>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
