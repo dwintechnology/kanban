@@ -1,18 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { fetches } from "../../store/tasks/changeStatus";
 import { Delete } from "../../store/tasks/delete";
+import AddTask from "../AddTask";
 
 export const MovableItem = ({
   id,
   name,
   description,
+  status,
   index,
   moveCardHandler,
   setItems,
 }) => {
+  let [updatedName, setUpdatedName] = useState(name)
+  let [updatedDesc, setUpdatedDesc] = useState(description)
   let dispatch = useDispatch();
+  let [openAdd, setOpenAdd] = useState();
   const changeItemColumn = (currentItem, columnName) => {
     fetches({ id, description, columnName, name });
     setItems((prevState) => {
@@ -108,10 +113,6 @@ export const MovableItem = ({
 
   drag(drop(ref));
 
-  const onDelete = () => {
-    console.log("deleted");
-  };
-
   return (
     <div
       ref={ref}
@@ -129,10 +130,11 @@ export const MovableItem = ({
           </button>
         </div>
         <div className="movable-item2">
-          <div>{name}</div>
-          <div>{description}</div>
-          <button onClick={onDelete}>Edit </button>
+          <div>{updatedName}</div>
+          <div>{updatedDesc}</div>
+          <button className="editBtn" onClick={() => { setOpenAdd(!openAdd) }} >Edit </button>
         </div>
+        {openAdd && <AddTask id={id} status={status} setUpdatedDesc={setUpdatedDesc} setUpdatedName={setUpdatedName} name={name} desc={description} />}
       </div>
 
 
