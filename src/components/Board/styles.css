@@ -59,3 +59,18 @@
   .deleteBtn button{
     cursor: pointer;
   }
+  .editBtn{
+    border: 1px solid rgb(83, 83, 212);
+    border-radius: 20px;
+    background-color: transparent;
+    margin-left: 5px;
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 2px 10px;
+    margin: 10px;
+  }
+  .editBtn:hover{
+    background-color: rgb(10, 10, 80);
+    cursor: pointer;
+    color: white;
+  }

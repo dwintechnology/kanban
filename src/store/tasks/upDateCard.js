@@ -1,6 +1,6 @@
 import { constants } from "../../constants";
 
-export async function fetches({ id, description, columnName, name }) {
+export async function Updatefetches(id, status, description, name ) {
   try {
     await fetch(`${constants.api}/${id}`, {
       method: "PUT",
@@ -10,7 +10,7 @@ export async function fetches({ id, description, columnName, name }) {
       },
       body: JSON.stringify({
         completed: false,
-        description: `{\"title\":\"${name}\",\"description\":\"${description}\",\"status\":\"${columnName}\"}`,
+        description: `{\"status\":\"${status}\",\"title\":\"${name}\",\"description\":\"${description}\"}`,
       }),
     });
   } catch (err) {

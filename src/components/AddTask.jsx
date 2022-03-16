@@ -2,34 +2,25 @@ import { useState } from "react";
 import { addTask } from "../store/tasks/addtask";
 import { useDispatch } from "react-redux";
 import {
-  FolderAddOutlined,
   PlusCircleTwoTone,
   CloseCircleTwoTone,
 } from "@ant-design/icons";
 import "../style/addtask.css";
+import { Updatefetches } from "../store/tasks/upDateCard";
 
-function AddTask() {
-  const [openAddDiv, setOpenAddDiv] = useState(false);
+function AddTask({id, status, setUpdatedDesc, setUpdatedName, name, desc }) {
+  let [descState, setDescState] = useState(desc)
+  let [nameState, setNameState] = useState(name)
+  const [openAddDiv, setOpenAddDiv] = useState(true);
   let [title, setTitle] = useState();
   let [description, setDescription] = useState();
   const dispatch = useDispatch();
   return (
     <>
-   
-      <div>
-        <button
-          onClick={() => {
-            setOpenAddDiv(!openAddDiv);
-          }}
-          className="addButton"
-        >
-          <FolderAddOutlined />
-        </button>
-      </div>
       {openAddDiv && (
         <div className="addDiv">
           <div>
-          <div>
+            <div>
               <button
                 onClick={() => {
                   setOpenAddDiv(!openAddDiv);
@@ -44,16 +35,20 @@ function AddTask() {
               type="text"
               onChange={(e) => {
                 setTitle(e.target.value);
+                setNameState(e.target.value)
               }}
+              value={nameState}
             />
             <label>Description</label>
             <input
               type="text"
               onChange={(e) => {
                 setDescription(e.target.value);
+                setDescState(e.target.value)
               }}
+              value={descState}
             />
-            <button
+            {name === undefined ? <button
               className="addButton"
               onClick={() => {
                 setOpenAddDiv(!openAddDiv);
@@ -65,8 +60,14 @@ function AddTask() {
                 );
               }}
             >
+
               <PlusCircleTwoTone />
-            </button>
+            </button> : <button className="upDateBtn" onClick={() => {
+              setOpenAddDiv(!openAddDiv);
+              setUpdatedDesc(descState)
+              setUpdatedName(nameState)
+              Updatefetches(id, status, descState, nameState)
+            }}>Update</button>}
           </div>
         </div>
       )}

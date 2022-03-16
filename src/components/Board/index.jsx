@@ -62,11 +62,10 @@ export const Wrapper = (props) => {
   };
 
   const returnItemsForColumn = (columnName) => {
-    return items
-      ?.filter(Boolean)
+    return items?.filter(Boolean)
       .filter(
         (item) =>
-          JSON.parse(item.description).status.toLocaleLowerCase() ===
+          JSON.parse(item.description).status?.toLocaleLowerCase() ===
           columnName.toLocaleLowerCase()
       )
       .map((item, index) => (
@@ -75,6 +74,7 @@ export const Wrapper = (props) => {
           id={item._id}
           name={JSON.parse(item.description).title}
           description={JSON.parse(item.description).description}
+          status={JSON.parse(item.description).status}
           setItems={setItems}
           index={index}
           moveCardHandler={moveCardHandler}
