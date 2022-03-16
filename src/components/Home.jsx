@@ -20,25 +20,26 @@ function Home() {
     navigate("/login");
   }
   return (
-    <div className="parent">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginTop: "30px",
-        }}
-      >
-        <Wrapper status={["To Do", "In Progress", "Done"]} tasks={tasks} />
-        <AddTask />
-        <div>
+    <div>
+       <div className="linkBtnDiv">
           <div className="linkBtn">
             <button
               onClick={() => {
                 localStorage.removeItem("token");
+
               }}
             >
-              <Link to="/login">Log Out</Link>
+              <Link className="linkLogOut" to="/login">Log Out</Link>
             </button>
+          </div>
+        </div>
+      <div className="homeParent">
+       
+        <div className="parent">
+          <div className="parentChild">
+            <Wrapper status={["To Do", "In Progress", "Done"]} tasks={tasks} />
+            <AddTask />
+
           </div>
         </div>
       </div>

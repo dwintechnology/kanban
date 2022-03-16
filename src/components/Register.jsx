@@ -15,50 +15,64 @@ function Register() {
   const sendRequestRegister = async () => {
     const newUserDataObject = { name, email, password, age };
     await RegisterFetch(newUserDataObject);
-    navigate("/login");
+    navigate("/login")
   };
-
+  function checkDisbled() {
+    if (name && email && password && age) {
+      return false
+    }
+    return true
+  }
   return (
     <>
       <h1>REGISTER</h1>
       <div className="formDiv">
-        <form onSubmit={register}>
-          <label>Name</label>
-          <input
-            style={{ marginTop: "10px" }}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            type="text"
-          />
-          <label>email</label>
-          <input
-            style={{ marginTop: "10px" }}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            type="text"
-          />
-          <label>password</label>
-          <input
-            style={{ marginTop: "10px" }}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-          />
-          <label>age</label>
-          <input
-            style={{ marginTop: "10px" }}
-            onChange={(e) => {
-              setAge(e.target.value);
-            }}
-            type="text"
-          />
-          <button type="submit" onClick={() => sendRequestRegister()}>
-            REGISTER
-          </button>
-        </form>
+        <div className="chidrenForm">
+          <form onSubmit={register}>
+            <label>Name</label>
+            <input
+              style={{ marginTop: "10px" }}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              type="text"
+              required
+            />
+            <label>Email</label>
+            <input
+              style={{ marginTop: "10px" }}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              type="text"
+              required
+            />
+            <label>Password</label>
+            <input
+              style={{ marginTop: "10px" }}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type="password"
+              required
+              minLength="7"
+            />
+            <label>Age</label>
+            <input
+              style={{ marginTop: "10px" }}
+              onChange={(e) => {
+                setAge(e.target.value);
+              }}
+              type="text"
+              required
+            />
+            <button
+              disabled={checkDisbled()}
+              type="submit" onClick={() => sendRequestRegister()}>
+              REGISTER
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

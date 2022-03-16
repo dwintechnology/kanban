@@ -117,20 +117,25 @@ export const MovableItem = ({
       ref={ref}
       className="movable-item"
       style={{ opacity }}
-      onClick={() => {}}
     >
-      <div>{name}</div>
-      <div>{description}</div>
-      <button onClick={onDelete}>Edit </button>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <button
-          onClick={() => {
-            Delete.onDelete((id = { id }), (dispatch = { dispatch }));
-          }}
-        >
-          X
-        </button>
+      <div>
+        <div className="deleteBtn">
+          <button
+            onClick={() => {
+              Delete.onDelete((id = { id }), (dispatch = { dispatch }));
+            }}
+          >
+            X
+          </button>
+        </div>
+        <div className="movable-item2">
+          <div>{name}</div>
+          <div>{description}</div>
+          <button onClick={onDelete}>Edit </button>
+        </div>
       </div>
+
+
     </div>
   );
 };
