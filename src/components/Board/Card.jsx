@@ -117,7 +117,6 @@ export const MovableItem = ({
       ref={ref}
       className="movable-item"
       style={{ opacity }}
-      onClick={() => { }}
     >
       <div>
         <div className="deleteBtn">
