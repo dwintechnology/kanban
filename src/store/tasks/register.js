@@ -1,7 +1,7 @@
 import { constants } from "../../constants/index";
 async function RegisterFetch({ name, email, password, age }) {
   try {
-    await fetch(`${constants.reg}`, {
+     await fetch(`${constants.reg}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

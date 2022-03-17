@@ -4,33 +4,49 @@
   cursor: pointer;
   margin: 10px;
 }
+.addButton2Parent{
+  display: flex;
+  justify-content: center;
+}
+.addButton2 {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px;
+}
 .closeButton {
   border: none;
   background-color: transparent;
   cursor: pointer;
   margin-left: 150px;
 }
-.addDiv {
-  padding: 150px 100px;
-  background-color: rgb(241, 241, 250);
+.buttonCloseDiv{
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+.areaDiv{
   display: flex;
   justify-content: center;
+}
+.addDiv {
+  background-color: rgb(241, 241, 250);
   position: fixed;
   top:10px;
   left: 30%;
+  background-color: #f4f5f7;
+  border-radius: 2px;
   z-index: 2;
   color: black;
-  border: 1px solid black;
-  border-radius: 30px;
+  width: 500px;
+  height: 300px;
 }
-.addDiv input {
+.addDiv textarea {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  box-shadow: 5px 5px #888888;
-  border-radius: 20px;
-  border: 1px solid #888888;
-  padding: 5px;
+  margin: 10px 15px;
+  width: 321px;
+  height: 61px;
 }
 .upDateBtn{
   border: 1px solid rgb(83, 83, 212);

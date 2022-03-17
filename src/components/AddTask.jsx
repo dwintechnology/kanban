@@ -19,8 +19,7 @@ function AddTask({id, status, setUpdatedDesc, setUpdatedName, name, desc }) {
     <>
       {openAddDiv && (
         <div className="addDiv">
-          <div>
-            <div>
+          <div className="buttonCloseDiv">
               <button
                 onClick={() => {
                   setOpenAddDiv(!openAddDiv);
@@ -30,26 +29,33 @@ function AddTask({id, status, setUpdatedDesc, setUpdatedName, name, desc }) {
                 <CloseCircleTwoTone />
               </button>
             </div>
+          <div className="areaDiv">
+            <div>
+
             <label>TITLE</label>
-            <input
+            <textarea
               type="text"
               onChange={(e) => {
                 setTitle(e.target.value);
                 setNameState(e.target.value)
               }}
               value={nameState}
-            />
+            >
+            </textarea>
             <label>Description</label>
-            <input
+            <textarea
               type="text"
               onChange={(e) => {
                 setDescription(e.target.value);
                 setDescState(e.target.value)
               }}
               value={descState}
-            />
-            {name === undefined ? <button
-              className="addButton"
+            >
+
+            </textarea>
+            {name === undefined ? <div className="addButton2Parent">
+              <button
+              className="addButton2"
               onClick={() => {
                 setOpenAddDiv(!openAddDiv);
                 dispatch(
@@ -62,12 +68,14 @@ function AddTask({id, status, setUpdatedDesc, setUpdatedName, name, desc }) {
             >
 
               <PlusCircleTwoTone />
-            </button> : <button className="upDateBtn" onClick={() => {
+            </button>
+            </div> :<div className="addButton2Parent"> <button className="upDateBtn" onClick={() => {
               setOpenAddDiv(!openAddDiv);
               setUpdatedDesc(descState)
               setUpdatedName(nameState)
               Updatefetches(id, status, descState, nameState)
-            }}>Update</button>}
+            }}>Update</button></div>}
+            </div>
           </div>
         </div>
       )}

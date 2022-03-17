@@ -6,9 +6,12 @@ import { tasksOp, tasksSel } from "../store/tasks";
 import { Wrapper } from "./Board";
 import AddTask from "./AddTask";
 import "../style/home.css";
+import imging from "../img/Done.svg";
+import kan from "../img/kanban-board.png";
 import {
   FolderAddOutlined,
 } from "@ant-design/icons";
+import Loading from "./Loading";
 
 function Home() {
   const dispatch = useDispatch();
@@ -21,39 +24,54 @@ function Home() {
   useEffect(() => {
     dispatch(tasksOp.getTasks());
   }, [dispatch]);
-  if (!localStorage.getItem("token")) {
+
+  if(!localStorage.getItem("token")) {
     navigate("/login");
+    return <Loading/>
   }
   return (
     <div>
-      <div className="linkBtnDiv">
-        <div className="linkBtn">
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-
-            }}
-          >
-            <Link className="linkLogOut" to="/login">Log Out</Link>
-          </button>
+     
+      <div className="HOMELOGOS">
+        <div>
+          <img src={kan} className="kanHOME"/>
+          <img src={imging} className="imgingKAN" />
         </div>
         <div>
-          <button
-            onClick={() => {
-              setOpenAdd(!openAdd)
-            }}
-            className="addButton"
-          >
-            <FolderAddOutlined />
-          </button>
+          <h1>{ localStorage.getItem("userEmail")}</h1><br/> 
         </div>
+        <div className="linkBtn">
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+          }}
+        >
+          <Link className="linkLogOut" to="/login">Log Out</Link>
+        </button>
       </div>
-      <div className="homeParent">
+      </div>
 
-        <div className="parent">
-          <div className="parentChild">
-            <Wrapper status={["To Do", "In Progress", "Done"]} tasks={tasks} />
-            {openAdd && <AddTask />}
+      <div className="homeParentBig">
+
+        <div className="linkBtnDiv">
+          <div>
+            <button
+              onClick={() => {
+                setOpenAdd(!openAdd)
+              }}
+              className="addButton"
+              title="Add Task"
+            >
+              <FolderAddOutlined />
+            </button>
+          </div>
+        </div>
+        <div className="homeParent">
+          <div className="parent">
+            <div className="parentChild">
+              <Wrapper status={["To Do", "In Progress", "Done"]} tasks={tasks} />
+              {openAdd && <AddTask />}
+            </div>
           </div>
         </div>
       </div>

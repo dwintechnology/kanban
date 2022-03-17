@@ -13,7 +13,13 @@ async function LogInFetch({ email }, { password }) {
       }),
     });
     const serverResponseJson = await response.json();
-    localStorage.setItem("token", serverResponseJson.token);
+    
+    if(serverResponseJson.token && serverResponseJson.token !== 'undefined') {
+      localStorage.setItem("token", serverResponseJson.token);
+     
+
+      localStorage.setItem("userEmail", serverResponseJson.user.name);
+    }
   } catch (err) {
     console.error(err);
   }
