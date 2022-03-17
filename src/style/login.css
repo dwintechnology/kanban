@@ -2,7 +2,17 @@
   display: flex;
   justify-content: center;
 }
-h1{
+.boss{
+  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-size: 100%;
+  padding-top: 107px;
+  padding-bottom: 160px;
+}
+.loginPageButton{
+  display: flex;
+  justify-content: center;
+}
+.LoginTitle{
   text-align: center;
   margin-top: 80px;
 }
@@ -18,11 +28,13 @@ h1{
 .singInDiv button{
   border: 1px solid rgb(244, 244, 250);
   border-radius: 20px;
-  background-color: transparent;
+  background-color: white;
   margin-left: 5px;
   margin-top: 10px;
   text-decoration: none;
   padding: 2px 10px;
+  display: block;
+
 }
 .singInDiv button:hover{
   background-color: rgb(10, 10, 80);
@@ -37,6 +49,8 @@ h1{
   color: white;
 }
 .signInChild{
-  background-color: cadetblue;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 20px;
   padding: 50px;
 }

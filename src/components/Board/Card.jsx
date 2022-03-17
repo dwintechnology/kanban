@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetches } from "../../store/tasks/changeStatus";
 import { Delete } from "../../store/tasks/delete";
 import AddTask from "../AddTask";
+import {EditOutlined} from "@ant-design/icons";
 
 export const MovableItem = ({
   id,
@@ -125,14 +126,16 @@ export const MovableItem = ({
             onClick={() => {
               Delete.onDelete((id = { id }), (dispatch = { dispatch }));
             }}
+            title="Delete Task"
           >
             X
           </button>
+          <button title="Update Task"  onClick={() => { setOpenAdd(!openAdd) }} > <EditOutlined /> </button>
         </div>
         <div className="movable-item2">
-          <div>{updatedName}</div>
-          <div>{updatedDesc}</div>
-          <button className="editBtn" onClick={() => { setOpenAdd(!openAdd) }} >Edit </button>
+          <div className="tite">{updatedName}</div>
+          <div className="desc">{updatedDesc}</div>
+          
         </div>
         {openAdd && <AddTask id={id} status={status} setUpdatedDesc={setUpdatedDesc} setUpdatedName={setUpdatedName} name={name} desc={description} />}
       </div>

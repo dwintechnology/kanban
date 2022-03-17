@@ -7,14 +7,14 @@
   .column {
     height: max-content;
     min-height: 100px;
-    width: 160px;
-    margin: 10px;
-    border-radius: 10px;
+    width: 340px;
+    margin: 0px 16px;
+    border-radius: 3px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    border: 2px solid #7d7d7d;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    background-color: #ebecf0;
   }
   
   .todo {
@@ -24,33 +24,54 @@
   .in_progress {
     background-color: #fef2e7;
   }
-  
-  .done {
-    background-color: #f5ffe5;
+  .tite{
+    text-align: center;
+    display: flex;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-right: 40px;
+    word-break: break-all;
+
   }
   
   .movable-item {
-    border-radius: 5px;
-    background-color: #fafdff;
-    height: 100px;
-    width: 140px;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 100px;
+    width: 315px;
     margin: 10px auto;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
-    padding: 5px;
+    box-shadow: 0 1px 0 #091e4240;
   }
+
   .movable-item2{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    font-size: larger;
+  }
+  .desc{
+    margin-left: 10px;
+    margin-top: 10px;
+    word-break: break-all;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .movable-item:hover{
+    cursor: pointer;
+  }
+  .movable-item:hover .deleteBtn{
+    display: flex;
+    cursor: pointer;
   }
   .deleteBtn{
     display: flex;
     justify-content: end;
+    display: none;
   }
   .deleteBtn button{
     border: none;
