@@ -2,6 +2,18 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  margin: 10px;
+}
+.addButton2Parent{
+  display: flex;
+  justify-content: center;
+}
+.addButton2 {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px;
 }
 .closeButton {
   border: none;
@@ -9,20 +21,49 @@
   cursor: pointer;
   margin-left: 150px;
 }
-.addDiv {
-  padding: 150px 100px;
-  background-color: blue;
+.buttonCloseDiv{
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+.areaDiv{
   display: flex;
   justify-content: center;
+}
+.addDiv {
+  background-color: rgb(241, 241, 250);
   position: fixed;
+  top:10px;
+  left: 30%;
+  background-color: #f4f5f7;
+  border-radius: 2px;
   z-index: 2;
-  color: white;
+  color: black;
+  width: 500px;
+  height: 300px;
 }
-.addDiv input {
+.addDiv textarea {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 10px 15px;
+  width: 321px;
+  height: 61px;
+  resize: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-.addDiv button {
-  padding-left: 75px;
+.upDateBtn{
+  border: 1px solid rgb(83, 83, 212);
+  border-radius: 20px;
+  background-color: transparent;
+  margin-left: 5px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 2px 10px;
+  margin: 10px;
+}
+.upDateBtn:hover{
+  background-color: rgb(10, 10, 80);
+  cursor: pointer;
+  color: white;
 }

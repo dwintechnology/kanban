@@ -1,17 +1,64 @@
-.linkBtn {
+.HOMELOGOS{
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+}
+.HOMELOGOS div{
+  display: flex;
+  align-items: center;
+}
+.kanHOME{
+  width: 100px;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+h1{
+  margin-top: 19px;
+}
+.imgingKAN{
+  width: 100px;
 }
 .linkBtn button {
+  border: 1px solid rgb(83, 83, 212);
+  border-radius: 20px;
   background-color: transparent;
-  margin: 10px;
-  padding: 5px 15px;
-  border: 1px solid blue;
-  border-radius: 25px;
-  margin-bottom: 15px;
+  margin-left: 25px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 2px 10px;
+  margin-right:10px ;
+}
+.homeParentBig{
+  background-color: hsl(203,24%,80.4%);;
+  background-size: 100%;
+  object-fit: cover;
+  padding-bottom: 300px;
+  padding-top:5px;
+  height: 100vh;
 }
 .parent {
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
+}
+.linkLogOut{
+  text-decoration: none;
+  color: black;
+}
+.homeParent{
+  display: flex;
+  justify-content: center;
+}
+.linkBtnDiv{
+  display: flex;
+  justify-content: end;
+  margin: 10px 50px 0px 0px
+}
+.parentChild{
+  display: flex;
+  justify-content: space-around;
+  
+}
+.addButton{
+  font-size: 25px;
 }

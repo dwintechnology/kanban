@@ -1,28 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { fetches } from "../../store/tasks/changeStatus";
 import { Delete } from "../../store/tasks/delete";
 import AddTask from "../AddTask";
+import { EditOutlined } from "@ant-design/icons";
+
 export const MovableItem = ({
   id,
   name,
   description,
+  status,
   index,
   moveCardHandler,
   setItems,
 }) => {
+  let [updatedName, setUpdatedName] = useState(name);
+  let [updatedDesc, setUpdatedDesc] = useState(description);
   let dispatch = useDispatch();
+  let [openAdd, setOpenAdd] = useState();
   const changeItemColumn = (currentItem, columnName) => {
     fetches({ id, description, columnName, name });
     setItems((prevState) => {
       return prevState.map((e) => {
-        const description = JSON.parse(e?.description);
+        const description = e?.description;
 
         if (currentItem.name === description.title) {
           return {
             ...e,
-            description: JSON.stringify({ ...description, status: columnName }),
+            description: { ...description, status: columnName },
           };
         }
         return e;
@@ -108,29 +114,42 @@ export const MovableItem = ({
 
   drag(drop(ref));
 
-  const onDelete = () => {
-    console.log("deleted");
-  };
-
   return (
-    <div
-      ref={ref}
-      className="movable-item"
-      style={{ opacity }}
-    >
-      <div>{name}</div>
-      <div>{description}</div>
-      <button onClick={() => {
-        <AddTask />
-      }}>Edit </button>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <button
-          onClick={() => {
-            Delete.onDelete((id = { id }), (dispatch = { dispatch }));
-          }}
-        >
-          X
-        </button>
+    <div ref={ref} className="movable-item" style={{ opacity }}>
+      <div>
+        <div className="deleteBtn">
+          <button
+            onClick={() => {
+              Delete.onDelete((id = { id }), (dispatch = { dispatch }));
+            }}
+            title="Delete Task"
+          >
+            X
+          </button>
+          <button
+            title="Update Task"
+            onClick={() => {
+              setOpenAdd(!openAdd);
+            }}
+          >
+            {" "}
+            <EditOutlined />{" "}
+          </button>
+        </div>
+        <div className="movable-item2">
+          <div className="tite">{updatedName}</div>
+          <div className="desc">{updatedDesc}</div>
+        </div>
+        {openAdd && (
+          <AddTask
+            id={id}
+            status={status}
+            setUpdatedDesc={setUpdatedDesc}
+            setUpdatedName={setUpdatedName}
+            name={name}
+            desc={description}
+          />
+        )}
       </div>
     </div>
   );

@@ -2,33 +2,24 @@ import { useState } from "react";
 import { addTask } from "../store/tasks/addtask";
 import { useDispatch } from "react-redux";
 import {
-  FolderAddOutlined,
   PlusCircleTwoTone,
   CloseCircleTwoTone,
 } from "@ant-design/icons";
 import "../style/addtask.css";
+import { Updatefetches } from "../store/tasks/upDateCard";
 
-function AddTask() {
-  const [openAddDiv, setOpenAddDiv] = useState(false);
+function AddTask({id, status, setUpdatedDesc, setUpdatedName, name, desc }) {
+  let [descState, setDescState] = useState(desc)
+  let [nameState, setNameState] = useState(name)
+  const [openAddDiv, setOpenAddDiv] = useState(true);
   let [title, setTitle] = useState();
   let [description, setDescription] = useState();
   const dispatch = useDispatch();
   return (
     <>
-      <div>
-        <button
-          onClick={() => {
-            setOpenAddDiv(!openAddDiv);
-          }}
-          className="addButton"
-        >
-          <FolderAddOutlined />
-        </button>
-      </div>
       {openAddDiv && (
         <div className="addDiv">
-          <div>
-            <div>
+          <div className="buttonCloseDiv">
               <button
                 onClick={() => {
                   setOpenAddDiv(!openAddDiv);
@@ -38,22 +29,33 @@ function AddTask() {
                 <CloseCircleTwoTone />
               </button>
             </div>
+          <div className="areaDiv">
+            <div>
+
             <label>TITLE</label>
-            <input
+            <textarea
               type="text"
               onChange={(e) => {
                 setTitle(e.target.value);
+                setNameState(e.target.value)
               }}
-            />
+              value={nameState}
+            >
+            </textarea>
             <label>Description</label>
-            <input
+            <textarea
               type="text"
               onChange={(e) => {
                 setDescription(e.target.value);
+                setDescState(e.target.value)
               }}
-            />
-            <button
-              className="addButton"
+              value={descState}
+            >
+
+            </textarea>
+            {name === undefined ? <div className="addButton2Parent">
+              <button
+              className="addButton2"
               onClick={() => {
                 setOpenAddDiv(!openAddDiv);
                 dispatch(
@@ -64,8 +66,16 @@ function AddTask() {
                 );
               }}
             >
+
               <PlusCircleTwoTone />
             </button>
+            </div> :<div className="addButton2Parent"> <button className="upDateBtn" onClick={() => {
+              setOpenAddDiv(!openAddDiv);
+              setUpdatedDesc(descState)
+              setUpdatedName(nameState)
+              Updatefetches(id, status, descState, nameState)
+            }}>Update</button></div>}
+            </div>
           </div>
         </div>
       )}

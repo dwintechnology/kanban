@@ -30,18 +30,18 @@ export const Wrapper = (props) => {
 
   const moveCardHandler = (dragIndex, hoverIndex, itemName) => {
     const column = items.find(
-      (i) => JSON.parse(i.description).title === itemName
+      (i) => i.description.title === itemName
     );
     const columnItems = items?.filter(
       (i) =>
-        JSON.parse(i.description).status ===
-        JSON.parse(column.description).status
+        i.description.status ===
+        column.description.status
     );
 
     const restItems = items.filter(
       (i) =>
-        JSON.parse(i.description).status !==
-        JSON.parse(column.description).status
+        i.description.status !==
+        column.description.status
     );
 
     const dragItem = columnItems[dragIndex];
@@ -62,18 +62,23 @@ export const Wrapper = (props) => {
   };
 
   const returnItemsForColumn = (columnName) => {
+    
+
     return items?.filter(Boolean)
-      .filter(
-        (item) =>
-          JSON.parse(item.description).status.toLocaleLowerCase() ===
+      ?.filter(
+        
+        (item) =>{
+          return item?.description?.status?.toLocaleLowerCase() ===
           columnName.toLocaleLowerCase()
+        }
       )
       .map((item, index) => (
         <MovableItem
           key={item._id}
           id={item._id}
-          name={JSON.parse(item.description).title}
-          description={JSON.parse(item.description).description}
+          name={item.description.title}
+          description={item.description.description}
+          status={item.description.status}
           setItems={setItems}
           index={index}
           moveCardHandler={moveCardHandler}

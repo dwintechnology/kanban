@@ -6,6 +6,12 @@ export const tasksSlice = createSlice({
   initialState: initialTasksState,
   reducers: {
     setTasks(state, action) {
+      action.payload.data = action.payload.data?.map((data) => ({
+        ...data,
+        description: JSON.parse(
+          data.description.replaceAll("\n", "").replaceAll("\t", "")
+        ),
+      }));
       state.taskList = { ...action.payload };
       state = { ...state };
     },
