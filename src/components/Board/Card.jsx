@@ -3,7 +3,7 @@ import { useDrop, useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { fetches } from "../../store/tasks/changeStatus";
 import { Delete } from "../../store/tasks/delete";
-
+import AddTask from "../AddTask";
 export const MovableItem = ({
   id,
   name,
@@ -117,11 +117,12 @@ export const MovableItem = ({
       ref={ref}
       className="movable-item"
       style={{ opacity }}
-      onClick={() => {}}
     >
       <div>{name}</div>
       <div>{description}</div>
-      <button onClick={onDelete}>Edit </button>
+      <button onClick={() => {
+        <AddTask />
+      }}>Edit </button>
       <div style={{ display: "flex", justifyContent: "end" }}>
         <button
           onClick={() => {

@@ -62,8 +62,7 @@ export const Wrapper = (props) => {
   };
 
   const returnItemsForColumn = (columnName) => {
-    return items
-      ?.filter(Boolean)
+    return items?.filter(Boolean)
       .filter(
         (item) =>
           JSON.parse(item.description).status.toLocaleLowerCase() ===
